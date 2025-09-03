@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-vl))-xbc1!4gi5a9gs-u^4f03d)j)6ek(yzl+jd(4)#q)65gvl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cs-webapps.bu.edu', '127.0.0.1']
 
 
 # Application definition
@@ -110,13 +111,24 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = 'static/' # note: no leading slash!
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= "media/"  # note: no leading slash!
+
+import socket
+CS_DEPLOYMENT_HOSTNAME = 'cs-webapps.bu.edu'
+
+if socket.gethostname() == CS_DEPLOYMENT_HOSTNAME:
+    STATIC_URL = '/plum/static/'
+    MEDIA_URL = '/plum/media/'
