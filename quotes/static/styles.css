@@ -1,0 +1,93 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Grid for webpage layout */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header'
+        'nav'
+        'main'
+        'aside'
+        'footer';
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific area styling */
+header {
+    grid-area: header;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+nav {
+    grid-area: nav;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+nav li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #585656;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #696666;
+}
+
+main {
+    grid-area: main;
+    padding: 20px 0;
+    text-align: center;
+}
+
+main h3 {
+    font-style: italic;
+    color: #555;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+aside {
+    grid-area: aside;
+    padding: 10px 0;
+    font-size: 0.9em;
+    color: #777;
+    border-top: 1px solid #ddd;
+}
+
+footer {
+    grid-area: footer;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 2px solid #eee;
+    font-size: 0.8em;
+    color: #aaa;
+}

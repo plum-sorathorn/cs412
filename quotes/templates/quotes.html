@@ -1,9 +1,54 @@
-<!DOCTYPE html>
-<html>
+
+<!--  
+    `quote.html` : the main web page, that will show a single quote along with an image,
+    each selected at random from a hard-coded list written in your Python code.
+-->
+  <!-- 
+    `base.html`: a base page that will provide a header and navigation for the page,
+    as well as including any necessary style information.
+-->
+ 
+
+ <html>
     <head>
-        <title>hello quotes</title>
-    <head>
+        <title>Quotations and Images of [INSERT]</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+
     <body>
-        <a>Hello Quotations and Images</a>
-    </body> 
-</html>
+        <div class="grid-container">
+        <header>
+            <h1>Quotations and Images of [INSERT]</h1>
+        </header>
+        
+        <nav>
+        <li><a href="">Quote of the Day</a></li>    
+        <li><a href="">Show All</a></li>   
+        <li><a href="">About</a></li>    
+        </nav>
+        
+        <main>
+        
+    <h3>[RANDOM QUOTE HERE]</h3>
+    
+    <img src="" alt="Image of SOMEONE">
+    
+    
+
+        </main>
+
+        <aside>
+            <p></p>
+        </aside>
+
+        <footer>
+            <p>
+                Page created by plum@bu.edu.<br>
+            </p>
+
+        </footer>
+        
+    
+    </div>
+    </body>
+ </html>
