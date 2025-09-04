@@ -3,5 +3,5 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    path(r'', views.home, name="home")
+    path(r'', views.quotes, name="quotes")
 ]

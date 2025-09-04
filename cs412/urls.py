@@ -18,5 +18,6 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    # path('quotes/', include("quotes.urls")),
+    path('', include("quotes.urls")),
+    path('quotes/', include("quotes.urls")),
 ]
