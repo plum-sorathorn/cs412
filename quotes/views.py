@@ -15,9 +15,9 @@ quotes_list = [
 
 # Image URLs as a list of strings
 images_list = [
-    "/static/quotes_cillian_0.jpg",
-    "/static/quotes_cillian_1.jpg",
-    "/static/quotes_cillian_2.webp"
+    "quotes_cillian_0.jpg",
+    "quotes_cillian_1.jpg",
+    "quotes_cillian_2.webp"
 ]
 
 def quotes(request):
