@@ -34,3 +34,15 @@ def quotes(request):
     }
 
     return render(request, template_name, context)
+
+def show_all(request):
+    ''' Show All page where all quotes and images from the list are shown '''
+
+    template_name = 'show_all.html'
+
+    context = {
+        'all_quotes': quotes_list,
+        'all_images': images_list
+    }
+
+    return render(request, template_name, context)

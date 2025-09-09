@@ -8,4 +8,5 @@ from . import views
 
 urlpatterns = [
     path(r'', views.quotes, name="quotes")
+    path(r'', views.show_all, name="show_all")
 ]
