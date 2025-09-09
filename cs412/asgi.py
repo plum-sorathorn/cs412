@@ -1,3 +1,7 @@
+# File: asgi.py
+# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/2/2025
+# Description: default django file for configurations.
+
 """
 ASGI config for cs412 project.
 

@@ -1,3 +1,7 @@
+# File: manage.py
+# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 4/9/2025
+# Description: main manage file for django to run
+
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os

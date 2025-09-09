@@ -1,3 +1,7 @@
+# File: urls.py
+# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/2/2025
+# Description: file for urls of my main page
+
 """
 URL configuration for cs412 project.
 

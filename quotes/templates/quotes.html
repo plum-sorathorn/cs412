@@ -1,44 +1,10 @@
-{% load static %}
-<html>
-    <head>
-        <title>Quotations and Images of [INSERT]</title>
-        <link rel="stylesheet" href="{% static 'styles.css' %}">
-    </head>
+<!-- File: quotes.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/6/2025 -->
+<!-- Description: html file to show quotes and images -->
 
-    <body>
-        <div class="grid-container">
-        <header>
-            <h1>Quotations and Images of [INSERT]</h1>
-        </header>
-        
-        <nav>
-        <li><a href="">Quote of the Day</a></li>    
-        <li><a href="">Show All</a></li>   
-        <li><a href="">About</a></li>    
-        </nav>
-        
-        <main>
-        
-    <h3>[RANDOM QUOTE HERE]</h3>
-    
-    <img src="" alt="Image of SOMEONE">
-    
-    
+{% extends "base.html" %}
 
-        </main>
-
-        <aside>
-            <p></p>
-        </aside>
-
-        <footer>
-            <p>
-                Page created by plum@bu.edu.<br>
-            </p>
-
-        </footer>
-        
-    
-    </div>
-    </body>
-</html>
+{% block content %}
+    <p>{{ generate_random_quote }}</p>
+    <img src="{{ generate_random_image }}">
+{% endblock %}

@@ -1,3 +1,7 @@
+# File: settings.py
+# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/2/2025
+# Description: django default settings file. Must edit this each time I add a project/assignment
+
 """
 Django settings for cs412 project.
 
