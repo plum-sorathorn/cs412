@@ -23,6 +23,4 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include("quotes.urls")),
-    path('quotes/', include("quotes.urls")),
-    path('show_all/', include("quotes.urls")),
 ]
