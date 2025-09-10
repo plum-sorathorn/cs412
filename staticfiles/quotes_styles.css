@@ -95,3 +95,9 @@ footer {
     font-size: 0.8em;
     color: #aaa;
 }
+
+.fixed-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
