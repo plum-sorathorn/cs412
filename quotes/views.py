@@ -28,24 +28,24 @@ def quotes(request):
     random_quote = random.choice(quotes_list)
     random_image = random.choice(images_list)
 
-    context = {
+    payload = {
         'generate_random_quote': random_quote,
         'generate_random_image': random_image,
     }
 
-    return render(request, template_name, context)
+    return render(request, template_name, payload)
 
 def show_all(request):
     ''' Show All page where all quotes and images from the list are shown '''
 
     template_name = 'show_all.html'
 
-    context = {
+    payload = {
         'all_quotes': quotes_list,
         'all_images': images_list
     }
 
-    return render(request, template_name, context)
+    return render(request, template_name, payload)
 
 def about(request):
     ''' About page which contains breif info about Cillian Murphy and a note about me '''
