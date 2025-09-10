@@ -46,3 +46,10 @@ def show_all(request):
     }
 
     return render(request, template_name, context)
+
+def about(request):
+    ''' About page which contains breif info about Cillian Murphy and a note about me '''
+
+    template_name = 'about.html'
+
+    return render(request, template_name)
