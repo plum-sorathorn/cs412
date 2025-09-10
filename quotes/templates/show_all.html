@@ -7,19 +7,24 @@
 {% load static %}
 
 {% block content %}
-    <h2>All Quotes</h2>
+
+    <h2>Images</h2>
+    <div class="images-list">
+
+        <!-- loop through the list of images from payload and display on web page -->
+        {% for image_url in all_images %}
+            <img src="{% static image_url %}" class="fixed-img">
+        {% endfor %}
+    </div>
+
+    <hr>
+    
+    <h2>Quotes</h2>
     <div class="quotes-list">
+        <!-- loop through the list of quotes from payload and display on web page -->
         {% for quote in all_quotes %}
             <p>"{{ quote }}"</p>
         {% endfor %}
     </div>
 
-    <hr>
-
-    <h2>All Images</h2>
-    <div class="images-list">
-        {% for image_url in all_images %}
-            <img src="{% static image_url %}" class="fixed-img">
-        {% endfor %}
-    </div>
 {% endblock %}

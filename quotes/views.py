@@ -20,6 +20,8 @@ images_list = [
     "quotes_cillian_2.webp"
 ]
 
+# START OF web pages of quotes web app
+
 def quotes(request):
     ''' Quotes page where a random quote and image are generated '''
     
@@ -53,3 +55,5 @@ def about(request):
     template_name = 'about.html'
 
     return render(request, template_name)
+
+# END OF web pages of quotes webapp

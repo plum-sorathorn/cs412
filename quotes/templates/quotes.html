@@ -7,6 +7,8 @@
 {% load static %}
 
 {% block content %}
-    <p>{{ generate_random_quote }}</p>
+
+    <!-- pull an image and quote from payload -->
     <img src="{% static generate_random_image %}" class="fixed-img">
+    <p>{{ generate_random_quote }}</p>
 {% endblock %}
