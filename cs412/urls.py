@@ -1,5 +1,5 @@
 # File: urls.py
-# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/2/2025
+# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/11/2025
 # Description: file for urls of my main page
 
 """
@@ -23,4 +23,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('quotes/', include("quotes.urls")),
+    path('restaurant/', include("restaurant.urls")),
 ]
