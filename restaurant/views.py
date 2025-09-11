@@ -8,6 +8,13 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 import random
 
+appetizers = []
+main_dishes = []
+desserts = []
+special_menus = [
+    "item1", "item2", "item3",
+]
+
 def main(request):
     ''' Main webpage for the restaurant. Simply returns the page. '''
 
@@ -20,9 +27,15 @@ def order(request):
         Also has a daily special function which an item is chosen to be
         displayed randomly. '''
     
+    daily_special = random.choice(special_menus)
+
+    payload = {
+        'daily_special' : daily_special,
+    }
+    
     template_name = "order.html"
 
-    return None
+    return render(request, template_name)
 
 def confirmation(request):
     ''' Confirmation page which will be opened after an order
@@ -32,6 +45,6 @@ def confirmation(request):
     template_name = "confirmation.html"
 
     if request.POST:
-        return None
+        pass
 
     return None
