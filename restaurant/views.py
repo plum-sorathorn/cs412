@@ -8,11 +8,11 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 import random
 
-appetizers = []
-main_dishes = []
-desserts = []
+appetizers = ["Spring Rolls", "Honey Ribs", "Crying Wings (Spicy Wings)"]
+main_dishes = ["Crispy Tamarind Duck", "Thai Omelet with minced pork", "Seafood Stir-fried Curry"]
+desserts = ["Coconut Ice Cream", "Thai Pumpkin Custard", "Mango with Sticky Rice"]
 special_menus = [
-    "item1", "item2", "item3",
+    "Crying Tiger (beef brisket)", "Crying Pork (grilled pork neck)", "Basil Fried Rice",
 ]
 
 def main(request):
@@ -20,7 +20,11 @@ def main(request):
 
     template_name = "main.html"
 
-    return render(request, template_name)
+    payload = {
+        "restaurant_pic" : "restaurant_pic.png",
+    }
+
+    return render(request, template_name, payload)
 
 def order(request):
     ''' Order page. Will display the menu and allow the user to order.
@@ -30,12 +34,15 @@ def order(request):
     daily_special = random.choice(special_menus)
 
     payload = {
+        'appetizers' : appetizers,
+        'mains' : main_dishes,
+        'desserts' : desserts,
         'daily_special' : daily_special,
     }
     
     template_name = "order.html"
 
-    return render(request, template_name)
+    return render(request, template_name, payload)
 
 def confirmation(request):
     ''' Confirmation page which will be opened after an order

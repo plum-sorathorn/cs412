@@ -2,3 +2,60 @@
 <!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/11/2025 -->
 <!-- Description:   order page displaying all the menu items
                     which is pulled from views as a payload -->
+
+{% extends "base_restaurant.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <form action="/azs/cs412/restaurant/confirmation/" method="POST">
+        {% csrf_token %}
+        <p>
+            <h3>Appetizers:</h3>
+            {% for appetizer in appetizers %}
+                <div><input type="number">{{ appetizer }}</div>
+            {% endfor %}
+        </p>
+
+        <p>
+            <h3>Mains:</h3>
+            {% for mains in main_dish %}
+                <div><input type="number">{{ main_dish }}</div>
+            {% endfor %}
+        </p>
+
+        <p>
+            <h3>Desserts:</h3>
+            {% for dessert in desserts %}
+                <div><input type="number">{{ dessert }}</div>
+            {% endfor %}
+        </p>
+
+        <p>
+        <h3>Today's Special:</h3>
+            <div><input type="number">{{ daily_special }}</div>
+        </p>
+        
+        <p>
+            <h3>Special Instructions</h3>
+            Please share any special instructions:
+            <div><textarea name="special_instructions" rows="3" cols="60"></textarea></div>
+        </p>
+        <p>
+            <h3>Customer Information</h3>
+
+            <div>Name:</div> <div><input name="name"></div>
+            <div>Phone:</div> <div><input name="phone"></div>
+
+            <div>Email:</div> <div><input name="email"></div>
+        </p>
+
+        <p>
+            <h3>Place your order!</h3>
+            <input type="submit">        
+        </p>
+
+    </form>
+
+{% endblock%}
