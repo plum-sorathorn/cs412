@@ -14,13 +14,14 @@
         <p>
             <h3>Appetizers:</h3>
             {% for appetizer in appetizers %}
-                <div><input type="number" value="0">{{ appetizer }}
+                <div><input type="checkbox" name="appetizer" value="{{ appetizer }}">{{ appetizer }}
                 {% if "Crying Wings" in appetizer %}
-                    <select name="spice_{{ forloop.counter }}">
-                        <option value="not_spicy">Not Spicy</option>
-                        <option value="spicy">Spicy</option>
-                        <option value="very_spicy">Very Spicy</option>
+                    <select name="spice">
+                        <option value="*Not Spicy">Not Spicy</option>
+                        <option value="*Spicy">Spicy</option>
+                        <option value="*Very Spicy">Very Spicy</option>
                     </select>
+
                 {% endif %}
                 </div>
             {% endfor %}
@@ -29,34 +30,34 @@
         <p>
             <h3>Mains:</h3>
             {% for main in mains %}
-                <div><input type="number" value="0">{{ main }}</div>
+                <div><input type="checkbox" name="main" value="{{ main }}">{{ main }}</div>
             {% endfor %}
         </p>
 
         <p>
             <h3>Desserts:</h3>
             {% for dessert in desserts %}
-                <div><input type="number" value="0">{{ dessert }}</div>
+                <div><input type="checkbox" name="dessert" value="{{ dessert }}">{{ dessert }}</div>
             {% endfor %}
         </p>
 
         <p>
         <h3>Today's Special:</h3>
-            <div><input type="number" value="0">{{ daily_special }}</div>
+            <div><input type="checkbox" name="special" value="{{ daily_special }}">{{ daily_special }}</div>
         </p>
         
         <p>
             <h3>Special Instructions</h3>
             Please share any special instructions:
-            <div><textarea name="special_instructions" rows="3" cols="60"></textarea></div>
+            <div><textarea name="special_instructions" rows="3" cols="30"></textarea></div>
         </p>
         <p>
             <h3>Customer Information</h3>
 
-            <div>Name:</div> <div><input name="name"></div>
-            <div>Phone:</div> <div><input name="phone"></div>
+            <div>Name:</div> <div><input type="text" name="name"></div>
+            <div>Phone:</div> <div><input type="text" name="phone"></div>
 
-            <div>Email:</div> <div><input name="email"></div>
+            <div>Email:</div> <div><input type="text" name="email"></div>
         </p>
 
         <p>

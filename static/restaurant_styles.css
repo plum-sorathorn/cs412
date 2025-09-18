@@ -110,6 +110,11 @@ footer {
     border: 3px solid #d2b48c;
 }
 
+hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 h2, h3 {
     color: #c2461b;
     margin-bottom: 1rem;
@@ -149,34 +154,25 @@ select {
     width: 100px;
 }
 
-input[type="number"],
-textarea {
+input[type="checkbox"] {
     width: 100%;
-    max-width: 50px;
-    padding: 0.5rem;
-    border: 1px solid #d2b48c;
-    border-radius: 4px;
+    max-width: 20px;
     background: #fdfcf9;
-    font-size: 1rem;
-    margin: 0.5rem;
+    transform: scale(1.5);
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 
 input[type="text"],
-input[type="email"],
 textarea {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     padding: 0.5rem;
     border: 1px solid #d2b48c;
     border-radius: 4px;
     background: #fdfcf9;
-    font-size: 1rem;
-    margin: 0.5rem;
-}
-
-textarea {
-    resize: vertical;
+    font-size: 15px;
 }
 
 input[type="submit"] {
