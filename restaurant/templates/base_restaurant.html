@@ -1,0 +1,43 @@
+<!-- File: base.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/11/2025 -->
+<!-- Description: base html file for other files to extend upon -->
+
+{% load static %}
+
+<html>
+    <head>
+    <title>Crying Thaiger</title>
+    <link rel="stylesheet" href="{% static 'restaurant_styles.css' %}">
+    </head>
+
+    <body>
+        <div class="grid-container">
+        <header>
+            <h1>Crying Thaiger</h1>
+        </header>
+        
+        <nav>
+        <li><a href="{% url 'main' %}">Main Page</a></li>    
+        <li><a href="{% url 'order' %}">Order Page</a></li>    
+        </nav>
+        
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <aside>
+            <p></p>
+        </aside>
+
+        <footer>
+            <p>
+                Page created by plum@bu.edu.<br>
+            </p>
+
+        </footer>
+        
+    
+    </div>
+    </body>
+<html>

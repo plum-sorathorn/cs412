@@ -1,0 +1,17 @@
+<!-- File: main.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/11/2025 -->
+<!-- Description:   main html file which extends from base,
+                    showing the restaurant's main page -->
+
+{% extends "base_restaurant.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <h2>Welcome!</h2>
+    <img src="{% static restaurant_pic %}" class="fixed-img">
+    <p>
+    Welcome to <strong>Crying Thaiger</strong>, Boston's best Thai restaurant!
+    </p>
+{% endblock %}

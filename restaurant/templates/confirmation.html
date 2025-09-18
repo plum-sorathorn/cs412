@@ -1,0 +1,44 @@
+<!-- File: confirmation.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/11/2025 -->
+<!-- Description:   html file which will be shown after an order is placed.
+                    Will show all the dishes ordered -->
+
+
+{% extends "base_restaurant.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h2>Order Confirmation</h2>
+    <p>Thank you for your order! Your request has been successfully submitted. We will contact you soon to finalize the details.</p>
+    <hr>
+
+    <h3>Your Order Details</h3>
+    {% if ordered_items %}
+        <ul>
+            {% for item in ordered_items %}
+                <p>- {{ item }}
+                    {% if "Crying Wings" in item and spice_level %}
+                        {{ spice_level }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No items were found in your order. Please go back and try again.</p>
+    {% endif %}
+
+
+    <hr>
+
+    <h3>Special Instructions</h3>
+        <p>{{ special_instructions }}</p>
+        <div></div>
+    <hr>
+
+    <h3>Customer Information</h3>
+    <p><strong>Name:</strong> {{ customer_name }}</p>
+    <p><strong>Phone:</strong> {{ customer_phone }}</p>
+    <p><strong>Email:</strong> {{ customer_email }}</p>
+
+{% endblock %}

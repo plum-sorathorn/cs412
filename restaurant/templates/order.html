@@ -1,0 +1,70 @@
+<!-- File: order.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/11/2025 -->
+<!-- Description:   order page displaying all the menu items
+                    which is pulled from views as a payload -->
+
+{% extends "base_restaurant.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <form action="{% url 'confirmation' %}" method="POST">
+        {% csrf_token %}
+        <p>
+            <h3>Appetizers:</h3>
+            {% for appetizer in appetizers %}
+                <div><input type="checkbox" name="appetizer" value="{{ appetizer }}">{{ appetizer }}
+                {% if "Crying Wings" in appetizer %}
+                    <select name="spice">
+                        <option value="*Not Spicy">Not Spicy</option>
+                        <option value="*Spicy">Spicy</option>
+                        <option value="*Very Spicy">Very Spicy</option>
+                    </select>
+
+                {% endif %}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            <h3>Mains:</h3>
+            {% for main in mains %}
+                <div><input type="checkbox" name="main" value="{{ main }}">{{ main }}</div>
+            {% endfor %}
+        </p>
+
+        <p>
+            <h3>Desserts:</h3>
+            {% for dessert in desserts %}
+                <div><input type="checkbox" name="dessert" value="{{ dessert }}">{{ dessert }}</div>
+            {% endfor %}
+        </p>
+
+        <p>
+        <h3>Today's Special:</h3>
+            <div><input type="checkbox" name="special" value="{{ daily_special }}">{{ daily_special }}</div>
+        </p>
+        
+        <p>
+            <h3>Special Instructions</h3>
+            Please share any special instructions:
+            <div><textarea name="special_instructions" rows="3" cols="30"></textarea></div>
+        </p>
+        <p>
+            <h3>Customer Information</h3>
+
+            <div>Name:</div> <div><input type="text" name="name"></div>
+            <div>Phone:</div> <div><input type="text" name="phone"></div>
+
+            <div>Email:</div> <div><input type="text" name="email"></div>
+        </p>
+
+        <p>
+            <h3>Place your order!</h3>
+            <input type="submit">        
+        </p>
+
+    </form>
+
+{% endblock%}

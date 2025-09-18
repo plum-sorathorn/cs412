@@ -1,0 +1,193 @@
+/* File: restaurant_styles.css */
+/* Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/18/2025 */
+/* Description: Styles for Crying Thaiger restaurant site */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f7f1e9; /* light cream */
+    color: #3b2f2f; /* dark brownish text */
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    "header header"
+    "nav main"
+    "aside main"
+    "footer footer";
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: auto 1fr auto auto;
+    width: 90%;
+    max-width: 1200px;
+    background: #fffaf5; /* off-white warm */
+    border: 1px solid #d2b48c; /* tan border */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    height: fit-content;
+}
+
+/* Header */
+header {
+    grid-area: header;
+    background: #c2461b; /* rich curry-orange / rust */
+    color: #fff8f0; /* light cream text */
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Navigation bar */
+nav {
+    grid-area: nav;
+    background: #3b2f2f;
+    border-right: 1px solid #a67c52;
+    color: #f7f1e9;
+    padding: 1.5rem;
+}
+
+nav li {
+    list-style: none;
+    margin-bottom: 1.2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #f7f1e9;
+    font-weight: 600;
+    transition: color 0.3s, transform 0.2s;
+}
+
+nav a:hover {
+    color: #ffd27f;
+    transform: scale(1.05);
+}
+
+/* Main content */
+main {
+    display: block;
+    grid-area: main;
+    padding: 2rem;
+}
+
+/* Aside */
+aside {
+    grid-area: aside;
+    background: #dabf9f;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    color: #5c4a3e;
+}
+
+/* Footer */
+footer {
+    grid-area: footer;
+    background: #3b2f2f;
+    color: #f7f1e9;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+
+/* Image styling */
+.fixed-img {
+    display: block;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    border: 3px solid #d2b48c;
+}
+
+hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+h2, h3 {
+    color: #c2461b;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #c2461b;
+}
+
+a:hover {
+    color: #8b2c0b;
+}
+
+/* Order form styling */
+form {
+    background: #fff8f0;
+    border: 1px solid #d2b48c;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+form h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #8b2c0b;
+    border-bottom: 2px solid #d2b48c;
+    padding-bottom: 0.3rem;
+}
+
+form div {
+    margin: 0.5rem 0;
+}
+
+select {
+    height: 1.5rem;
+    width: 100px;
+}
+
+input[type="checkbox"] {
+    width: 100%;
+    max-width: 20px;
+    background: #fdfcf9;
+    transform: scale(1.5);
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+
+input[type="text"],
+textarea {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.5rem;
+    border: 1px solid #d2b48c;
+    border-radius: 4px;
+    background: #fdfcf9;
+    font-size: 15px;
+}
+
+input[type="submit"] {
+    background: #c2461b;
+    color: #fff8f0;
+    font-weight: bold;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    margin-top: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+input[type="submit"]:hover {
+    background: #8b2c0b;
+    transform: scale(1.05);
+}
