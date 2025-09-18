@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 import random
 
-appetizers = ["Spring Rolls", "Honey Ribs", "Crying Wings (Spicy Wings)"]
+appetizers = ["Spring Rolls", "Honey Ribs", "Crying Wings (spicy wings)"]
 main_dishes = ["Crispy Tamarind Duck", "Thai Omelet with minced pork", "Seafood Stir-fried Curry"]
 desserts = ["Coconut Ice Cream", "Thai Pumpkin Custard", "Mango with Sticky Rice"]
 special_menus = [
