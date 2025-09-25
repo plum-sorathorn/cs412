@@ -14,11 +14,7 @@ body {
 main {
     max-width: 900px;
     margin: 0 auto;
-<<<<<<< HEAD
     padding: 30px 20px 60px 20px;
-=======
-    padding: 30px 20px;
->>>>>>> a69f2c0f2eaee4c6c9f7f46570c4d1760edccd7c
 }
 
 /* --- Header Styles --- */
