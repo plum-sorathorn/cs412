@@ -1,0 +1,227 @@
+/* File: mini_insta_styles.css */
+/* Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 */
+/* Description: This file contains styling for the mini_insta web application */
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* --- Header Styles --- */
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dcdcdc;
+    padding: 15px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: normal;
+    font-size: 2.2em;
+    color: #333333;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* --- Profile Grid Styles --- */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding-top: 30px;
+}
+
+/* --- Individual Profile Card Styles --- */
+.profile-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px #888888;;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.profile-image-container {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease-in-out;
+}
+
+.profile-card:hover .profile-image {
+    filter: grayscale(0%);
+}
+
+.profile-info {
+    padding: 25px;
+}
+
+.username {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+}
+
+.display-name {
+    font-size: 1em;
+    color: #666666;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* CSS for individual profile page */
+
+.profile-page {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.profile-header-section {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.profile-image-large-container {
+    width: 500px;
+    height: 500px;
+    border-radius: 25%;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.profile-image-large {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-username {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.profile-displayname {
+    font-size: 1.2em;
+    color: #666666;
+    font-weight: normal;
+    margin: 0 0 20px 0;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 7px;
+    font-size: 0.8rem;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-weight: bold;
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 3px;
+}
+
+.profile-bio {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #444444;
+}
+
+.profile-join-date {
+    font-size: 0.9em;
+    color: #888888;
+    margin-top: 10px;
+}
+
+.profile-posts-section {
+    margin-top: 40px;
+    padding-top: 40px;
+}
+
+.posts-placeholder {
+    text-align: center;
+    padding: 50px;
+    border: 1px dashed #cccccc;
+    color: #aaaaaa;
+}
+
+/* --- CSS for floating footer --- */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff86;
+    border-top: 1px solid #dcdcdc;
+    padding: 20px;
+    text-align: center;
+    z-index: 10;
+}
+
+footer a {
+    text-decoration: none;
+    color: #666666;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s ease-in-out;
+}
+
+footer a:hover {
+    color: #1a1a1a;
+}

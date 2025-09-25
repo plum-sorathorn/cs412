@@ -1,0 +1,31 @@
+<!-- File: base_mini_insta.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 -->
+<!-- Description: base html for mini_insta pages -->
+
+{% load static %}
+
+<html>
+
+    <head>
+        <title>Mini Insta</title>
+        <link rel="stylesheet" href="{% static 'mini_insta_styles.css' %}">
+    </head>
+
+    <body>
+        <header>
+            <h1>Mini Insta</h1>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </body>
+
+    <footer>
+
+        <a href="{% url 'profile_list' %}"> home </a>
+
+    </footer>
+
+</html>

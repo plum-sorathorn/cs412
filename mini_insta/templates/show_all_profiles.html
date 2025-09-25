@@ -1,0 +1,28 @@
+<!-- File: show_all_profiles.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 -->
+<!-- Description: main page which shows all mini_insta profiles -->
+
+{% extends "base_mini_insta.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="profile-grid">
+        
+        <!-- scriptlet code to loop over all profiles -->
+        {% for profile in profiles %}
+        <a class="profile-card" href="{% url 'profile' profile.pk %}">
+
+            <div class="profile-image-container">
+                <img src="{{ profile.profile_image_url }}" class="profile-image">
+            </div>
+
+            <div class="profile-info">
+                <h2 class="username">{{ profile.username }}</h2>
+                <p class="display-name">{{ profile.display_name }}</p>
+            </div>
+
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}
