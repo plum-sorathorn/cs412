@@ -207,7 +207,11 @@ footer {
     width: 100%;
     background-color: #ffffff86;
     border-top: 1px solid #dcdcdc;
+<<<<<<< HEAD
     padding: 10px;
+=======
+    padding: 20px;
+>>>>>>> a69f2c0f2eaee4c6c9f7f46570c4d1760edccd7c
     text-align: center;
     z-index: 10;
 }
