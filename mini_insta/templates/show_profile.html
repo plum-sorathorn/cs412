@@ -34,9 +34,11 @@
         <div class="profile-posts-section">
             <h3>Posts by this user:</h3>
             <div class="posts-grid">
+                <!-- scriptlet code to loop over all posts associated with this profile -->
                 {% for post in profile.get_all_posts %}
                     <div class="post">
                         <a class="post-photos" href="{% url 'post' post.pk %}">
+                            <!-- scriptlet code to loop and get the first photo of this post -->
                             {% for photo in post.get_all_photos %}
                                 {% if forloop.first %}
                                     <img src="{{ photo.image_url }}" class="post-photo">
