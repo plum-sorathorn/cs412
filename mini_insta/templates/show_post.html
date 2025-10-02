@@ -10,6 +10,7 @@
 
 <div class="single-post">
     <div>
+        <!-- scriptlet code to loop over all photos associated with this post -->
         {% for photo in post.get_all_photos %}
             <img src="{{ photo.image_url }}" class="single-post-photos">
             {% empty %}

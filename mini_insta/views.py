@@ -2,9 +2,11 @@
 # Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/23/2025
 # Description: logic/backend for mini_insta
 
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Profile, Post
+from django.utils import timezone
+from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse
+from .models import Photo, Profile, Post
+from .forms import CreatePostForm
 
 # Create your views here.
 class ProfileListView(ListView):
@@ -25,3 +27,52 @@ class PostDetailView(DetailView):
     model = Post
     template_name = "show_post.html"
     context_object_name = "post"
+
+class CreatePostView(CreateView):
+    '''A view to create a new post and save it to the database.'''
+    
+    template_name = "create_post_form.html"
+    form_class = CreatePostForm
+
+    def get_context_data(self):
+        '''Return the dictionary of context variables for use in the template.'''
+        
+        context = super().get_context_data()
+        
+        pk = self.kwargs['pk']
+        profile = Profile.objects.get(pk=pk)
+        
+        context['profile'] = profile
+        return context
+    
+    def form_valid(self, form):
+        '''This method handles the form submission and saves the 
+        new object to the Django database.
+        We need to add the foreign key (of the Profile) to the Post
+        object before saving it to the database.
+        '''
+
+        pk = self.kwargs['pk']
+        profile = Profile.objects.get(pk=pk)
+        
+        form.instance.profile = profile
+        form.instance.timestamp = timezone.now()
+        post = form.save()
+
+        image_url = self.request.POST.get('image_url')
+
+        # Create a Photo object and associate it with the Post
+        if image_url:
+            Photo.objects.create(
+                post=post,
+                image_url=image_url,
+                timestamp=timezone.now()
+            )
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        '''Provide a URL to redirect to after creating a new Comment.'''
+ 
+        pk = self.kwargs['pk']
+        return reverse('profile', kwargs={'pk':pk})
