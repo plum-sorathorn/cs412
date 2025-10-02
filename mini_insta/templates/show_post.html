@@ -1,0 +1,25 @@
+<!-- File: show_post.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 -->
+<!-- Description: html page to show individual mini_insta posts -->
+
+{% extends "base_mini_insta.html" %}    
+
+{% load static %}
+
+{% block content %}
+
+<div class="single-post">
+    <div>
+        {% for photo in post.get_all_photos %}
+            <img src="{{ photo.image_url }}" class="single-post-photos">
+            {% empty %}
+            <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg" class="post-photo">
+            </div>
+        {% endfor %}
+    </div>
+    <p class="post-caption">{{ post.caption }}</p>
+    <p class="post-timestamp">{{ post.timestamp }}</p>
+</div>
+
+{% endblock %}
