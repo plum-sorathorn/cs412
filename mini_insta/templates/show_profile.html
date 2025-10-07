@@ -41,7 +41,7 @@
                             <!-- scriptlet code to loop and get the first photo of this post -->
                             {% for photo in post.get_all_photos %}
                                 {% if forloop.first %}
-                                    <img src="{{ photo.image_url }}" class="post-photo">
+                                    <img src="{{ photo.image_file.url }}" class="post-photo">
                                 {% endif %}
                                 {% empty %}
                                 <div>

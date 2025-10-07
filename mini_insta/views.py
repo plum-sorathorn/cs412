@@ -59,13 +59,19 @@ class CreatePostView(CreateView):
         form.instance.timestamp = timezone.now()
         post = form.save()
 
-        image_url = self.request.POST.get('image_url')
+        # # Create a Photo object and associate it with the Post
+        # if image_url:
+        #     Photo.objects.create(
+        #         post=post,
+        #         image_url=image_url,
+        #         timestamp=timezone.now()
+        #     )
 
-        # Create a Photo object and associate it with the Post
-        if image_url:
+        image_files = self.request.FILES.getlist('image_file')
+        while image_files:
             Photo.objects.create(
                 post=post,
-                image_url=image_url,
+                image_file=image_files.pop(),
                 timestamp=timezone.now()
             )
 
