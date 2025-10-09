@@ -56,7 +56,7 @@ class Photo(models.Model):
 
     def __str__(self):
         ''' return string representation of photo '''
-        return f'POST INFO: {self.post.profile.username}, {self.post.timestamp}; PHOTO INFO: {self.image_file}'
+        return f'POST INFO: {self.post.profile.username}, {self.post.timestamp}; PHOTO INFO: {self.get_image_url}'
 
     def get_image_url(self):
         if self.image_url:

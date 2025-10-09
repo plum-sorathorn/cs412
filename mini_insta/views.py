@@ -3,10 +3,10 @@
 # Description: logic/backend for mini_insta
 
 from django.utils import timezone
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse
 from .models import Photo, Profile, Post
-from .forms import CreatePostForm
+from .forms import CreatePostForm, UpdateProfileForm
 
 # Create your views here.
 class ProfileListView(ListView):
@@ -82,3 +82,9 @@ class CreatePostView(CreateView):
  
         pk = self.kwargs['pk']
         return reverse('profile', kwargs={'pk':pk})
+    
+class UpdateProfileView(UpdateView):
+    ''' view class to update individual profiles '''
+    model = Profile
+    form_class = UpdateProfileForm
+    template_name = "update_profile_form.html"
