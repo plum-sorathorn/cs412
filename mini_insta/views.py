@@ -3,10 +3,10 @@
 # Description: logic/backend for mini_insta
 
 from django.utils import timezone
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from .models import Photo, Profile, Post
-from .forms import CreatePostForm, UpdateProfileForm
+from .forms import CreatePostForm, UpdateProfileForm, UpdatePostForm
 
 # Create your views here.
 class ProfileListView(ListView):
@@ -88,3 +88,42 @@ class UpdateProfileView(UpdateView):
     model = Profile
     form_class = UpdateProfileForm
     template_name = "update_profile_form.html"
+
+class DeletePostView(DeleteView):
+    ''' view class to delete posts '''
+    model = Post
+    template_name = "delete_post_form.html"
+    context_object_name = "post"
+
+    def get_context_data(self, **kwargs):
+        ''' Override context to delete specific post '''
+        
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        context['post'] = post
+        context['profile'] = post.profile
+        return context
+
+    def get_success_url(self):
+        post = self.get_object()
+        return reverse('profile', kwargs={'pk': post.profile.pk})
+    
+class UpdatePostView(UpdateView):
+    ''' view class to update posts '''
+    model = Post
+    template_name = "update_post_form.html"
+    context_object_name = "post"
+    form_class = UpdatePostForm
+    
+    def get_context_data(self, **kwargs):
+        ''' Override context to delete specific post '''
+        
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        context['post'] = post
+        context['profile'] = post.profile
+        return context
+
+    def get_success_url(self):
+        post = self.get_object()
+        return reverse('post', kwargs={'pk': post.pk})

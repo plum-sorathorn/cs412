@@ -18,3 +18,10 @@ class UpdateProfileForm(forms.ModelForm):
         ''' link form to model in database '''
         model = Profile
         fields = ['display_name', 'bio_text', 'profile_image_url']
+
+class UpdatePostForm(forms.ModelForm):
+    ''' form to update a post '''
+    class Meta:
+        ''' link form to model in database '''
+        model = Post
+        fields = ['caption']
