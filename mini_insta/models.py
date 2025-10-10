@@ -52,9 +52,14 @@ class Photo(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     image_url = models.TextField(blank=True)
     timestamp = models.DateTimeField(blank=True)
+    image_file = models.ImageField(blank=True)
 
     def __str__(self):
         ''' return string representation of photo '''
-        return f'POST INFO: {self.post.profile.username}, {self.post.timestamp}; PHOTO INFO: {self.timestamp}'
+        return f'POST INFO: {self.post.profile.username}, {self.post.timestamp}; PHOTO INFO: {self.get_image_url}'
 
-
+    def get_image_url(self):
+        if self.image_url:
+            return self.image_url
+        else:
+            return self.image_file.url

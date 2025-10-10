@@ -28,6 +28,12 @@
             {% if profile %}
                 <a href="{% url 'create_post' profile.pk %}">Create Post</a>
             {% endif %}
+            {% if profile %}
+                <a href="{% url 'update_profile' profile.pk %}">Update Profile</a>
+            {% endif %}
+            {% if post %}
+                <a href="{% url 'update_post' post.pk %}">Update Post</a>
+            {% endif %}
         </nav>
     </footer>
 

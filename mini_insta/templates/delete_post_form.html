@@ -1,0 +1,36 @@
+<!-- File: delete_post_form.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 -->
+<!-- Description: html form to delete an existing post -->
+
+{% extends "base_mini_insta.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <p>Delete Post: </p>
+    <div class="single-post">
+        <div>
+            <!-- scriptlet code to loop over all photos associated with this post -->
+            {% for photo in post.get_all_photos %}
+                <img src="{{ photo.get_image_url }}" class="single-post-photos">
+                {% empty %}
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg" class="post-photo">
+                </div>
+            {% endfor %}
+        </div>
+        <p class="post-caption">{{ post.caption }}</p>
+        <p class="post-timestamp">{{ post.timestamp }}</p>
+    </div>
+    <p></p>
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Delete Post</button>
+            <a href="{% url 'profile' profile.pk %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

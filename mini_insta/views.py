@@ -3,10 +3,10 @@
 # Description: logic/backend for mini_insta
 
 from django.utils import timezone
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from .models import Photo, Profile, Post
-from .forms import CreatePostForm
+from .forms import CreatePostForm, UpdateProfileForm, UpdatePostForm
 
 # Create your views here.
 class ProfileListView(ListView):
@@ -59,13 +59,19 @@ class CreatePostView(CreateView):
         form.instance.timestamp = timezone.now()
         post = form.save()
 
-        image_url = self.request.POST.get('image_url')
+        # # Create a Photo object and associate it with the Post
+        # if image_url:
+        #     Photo.objects.create(
+        #         post=post,
+        #         image_url=image_url,
+        #         timestamp=timezone.now()
+        #     )
 
-        # Create a Photo object and associate it with the Post
-        if image_url:
+        image_files = self.request.FILES.getlist('image_file')
+        while image_files:
             Photo.objects.create(
                 post=post,
-                image_url=image_url,
+                image_file=image_files.pop(),
                 timestamp=timezone.now()
             )
 
@@ -76,3 +82,48 @@ class CreatePostView(CreateView):
  
         pk = self.kwargs['pk']
         return reverse('profile', kwargs={'pk':pk})
+    
+class UpdateProfileView(UpdateView):
+    ''' view class to update individual profiles '''
+    model = Profile
+    form_class = UpdateProfileForm
+    template_name = "update_profile_form.html"
+
+class DeletePostView(DeleteView):
+    ''' view class to delete posts '''
+    model = Post
+    template_name = "delete_post_form.html"
+    context_object_name = "post"
+
+    def get_context_data(self, **kwargs):
+        ''' Override context to delete specific post '''
+        
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        context['post'] = post
+        context['profile'] = post.profile
+        return context
+
+    def get_success_url(self):
+        post = self.get_object()
+        return reverse('profile', kwargs={'pk': post.profile.pk})
+    
+class UpdatePostView(UpdateView):
+    ''' view class to update posts '''
+    model = Post
+    template_name = "update_post_form.html"
+    context_object_name = "post"
+    form_class = UpdatePostForm
+    
+    def get_context_data(self, **kwargs):
+        ''' Override context to delete specific post '''
+        
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        context['post'] = post
+        context['profile'] = post.profile
+        return context
+
+    def get_success_url(self):
+        post = self.get_object()
+        return reverse('post', kwargs={'pk': post.pk})
