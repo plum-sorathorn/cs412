@@ -164,14 +164,14 @@ a {
 }
 
 .stat-item {
-    text-align: center;
+    font-size: 1.2em;
+    gap: 1em;
 }
 
 .stat-number {
     font-weight: bold;
-    display: block;
-    font-size: 1.1em;
-    margin-bottom: 3px;
+    font-size: 1.3em;
+    gap: 1em;   
 }
 
 .profile-bio {
@@ -275,6 +275,40 @@ a {
 
 .post-photo:hover {
     transform: scale(1.02);
+}
+
+.post-comment-box {
+    justify-self: center;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.post-comment {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 0.8em;
+    color: #1a1a1a;
+    font-weight: 500;
+    width: 100%;
+}
+
+.post-comment-author {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 0.8em;
+    color: #1a1a1a;
+    font-weight: 400;
+    width: 100%;
 }
 
 /* CSS for post form */

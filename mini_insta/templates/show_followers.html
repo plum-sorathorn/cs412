@@ -1,0 +1,30 @@
+<!-- File: show_followers.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 -->
+<!-- Description: show profiles of all followers of current profile -->
+
+{% extends "base_mini_insta.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <p>Followers of <strong>{{ profile.username }}</strong>:</p>
+    <div class="profile-grid">
+        
+        <!-- scriptlet code to loop over all followers of this profile -->
+        {% for profile in profiles.get_followers %}
+        <a class="profile-card" href="{% url 'profile' profile.pk %}">
+
+            <div class="profile-image-container">
+                <img src="{{ profile.profile_image_url }}" class="profile-image">
+            </div>
+
+            <div class="profile-info">
+                <h2 class="username">{{ profile.username }}</h2>
+                <p class="display-name">{{ profile.display_name }}</p>
+            </div>
+
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}

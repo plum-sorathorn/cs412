@@ -67,6 +67,7 @@ class CreatePostView(CreateView):
         #         timestamp=timezone.now()
         #     )
 
+        # create photo object and assign all the image files to it
         image_files = self.request.FILES.getlist('image_file')
         while image_files:
             Photo.objects.create(
@@ -93,7 +94,6 @@ class DeletePostView(DeleteView):
     ''' view class to delete posts '''
     model = Post
     template_name = "delete_post_form.html"
-    context_object_name = "post"
 
     def get_context_data(self, **kwargs):
         ''' Override context to delete specific post '''
@@ -105,6 +105,7 @@ class DeletePostView(DeleteView):
         return context
 
     def get_success_url(self):
+        ''' return url page of when post is successfully deleted '''
         post = self.get_object()
         return reverse('profile', kwargs={'pk': post.profile.pk})
     
@@ -112,7 +113,6 @@ class UpdatePostView(UpdateView):
     ''' view class to update posts '''
     model = Post
     template_name = "update_post_form.html"
-    context_object_name = "post"
     form_class = UpdatePostForm
     
     def get_context_data(self, **kwargs):
@@ -125,5 +125,32 @@ class UpdatePostView(UpdateView):
         return context
 
     def get_success_url(self):
+        ''' return url page of when post is successfully submitted '''
         post = self.get_object()
         return reverse('post', kwargs={'pk': post.pk})
+    
+class ShowFollowerDetailView(DetailView):
+    ''' view class to show this profile's followers '''
+    model = Profile
+    template_name = "show_followers.html"
+
+    def get_context_data(self, **kwargs):
+        ''' Override context to show the profile's followers '''
+
+        context = super().get_context_data(**kwargs)
+        profile = self.get_object()
+        context['profiles'] = profile
+        return context
+        
+class ShowFollowingDetailView(DetailView):
+    ''' view class to show profiles that this profile is following '''
+    model = Profile
+    template_name = "show_following.html"
+    context_object_name = "profile"
+
+    def get_context_data(self, **kwargs):
+        ''' Override context to show profile's followings '''
+        context = super().get_context_data(**kwargs)
+        profile = self.get_object()
+        context['profiles'] = profile
+        return context

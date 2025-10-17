@@ -19,8 +19,20 @@
             </div>
         {% endfor %}
     </div>
+    <p class="stat-item">
+        <a class="stat-number">{{ post.get_likes }}</a> Likes
+    </p>
     <p class="post-caption">{{ post.caption }}</p>
     <p class="post-timestamp">{{ post.timestamp }}</p>
 </div>
+
+<p>Comments:</p>
+<!-- scriptlet code to loop over all comments under this post -->
+{% for comment in post.get_all_comments %}
+    <div class="post-comment-box">
+        <p class="post-comment">{{ comment.text }}</p>
+        <p class="post-comment-author">by {{ comment.profile.username }}</p>
+    </div>
+{% endfor %}
 
 {% endblock %}

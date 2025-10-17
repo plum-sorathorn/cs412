@@ -1,0 +1,30 @@
+<!-- File: show_following.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 -->
+<!-- Description: show all profiles that the current profile is following -->
+
+{% extends "base_mini_insta.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <p><strong>{{ profile.username }}</strong>'s followings:</p>
+    <div class="profile-grid">
+        
+        <!-- scriptlet code to loop over all profiles this profile is following-->
+        {% for profile in profiles.get_following %}
+        <a class="profile-card" href="{% url 'profile' profile.pk %}">
+
+            <div class="profile-image-container">
+                <img src="{{ profile.profile_image_url }}" class="profile-image">
+            </div>
+
+            <div class="profile-info">
+                <h2 class="username">{{ profile.username }}</h2>
+                <p class="display-name">{{ profile.display_name }}</p>
+            </div>
+
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}

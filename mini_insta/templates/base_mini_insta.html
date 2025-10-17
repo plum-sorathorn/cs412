@@ -34,6 +34,9 @@
             {% if post %}
                 <a href="{% url 'update_post' post.pk %}">Update Post</a>
             {% endif %}
+            {% if post %}
+                <a href="{% url 'delete_post' post.pk %}">Delete Post</a>
+            {% endif %}
         </nav>
     </footer>
 
