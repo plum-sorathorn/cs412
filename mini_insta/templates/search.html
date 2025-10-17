@@ -1,0 +1,21 @@
+<!-- File: search.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 10/17/2025 -->
+<!-- Description: html page to search for profiles or posts -->
+
+{% extends "base_mini_insta.html" %}
+{% load static %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Search Mini Insta</h2>
+    <form method="GET" action="{% url 'search' profile.pk %}" class="search-form">
+        <div class="form-group">
+            <label for="id_query" class="form-label">Search for Profiles or Posts:</label>
+            <input type="text" id="id_query" name="query" class="form-input" placeholder="Enter username, display name, bio, or post caption..." required>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

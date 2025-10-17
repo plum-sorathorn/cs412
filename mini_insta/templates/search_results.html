@@ -1,0 +1,64 @@
+<!-- File: search_results.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 10/17/2025 -->
+<!-- Description: html page to show results of a search -->
+
+{% extends "base_mini_insta.html" %}
+{% load static %}
+
+{% block content %}
+<div class="search-results-container">
+    <h2>Search Results for: **"{{ query }}"**</h2>
+
+    <div class="results-section">
+        <h3>Profiles ({{ profiles_results|length }})</h3>
+        <div class="profile-grid">
+            {% for p in profiles_results %}
+            <div class="profile-card">
+                <a href="{% url 'profile' p.pk %}">
+                    <div class="profile-image-container">
+                        <img src="{{ p.profile_image_url }}" alt="{{ p.username }}'s profile image" class="profile-image">
+                    </div>
+                    <div class="profile-info">
+                        <h4 class="username">@{{ p.username }}</h4>
+                        <p class="display-name">{{ p.display_name }}</p>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+                <p>No profiles matched your search query.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="results-section">
+        <h3>Posts ({{ posts|length }})</h3>
+        <div class="posts-grid">
+            {% for post in posts %}
+            <div class="post">
+                <p class="post-caption-header">
+                    <a href="{% url 'profile' post.profile.pk %}" class="post-username">@{{ post.profile.username }}</a>
+                </p>
+                <a href="{% url 'post' post.pk %}" class="post-link">
+                    <div class="post-photos">
+                        {% with photos=post.get_all_photos %}
+                            {% if photos %}
+                                <img src="{{ photos.0.get_image_url }}" alt="Post image" class="post-photo">
+                            {% else %}
+                                <div class="no-photo-placeholder">No Image Available</div>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </a>
+                <p class="post-caption">{{ post.caption|truncatechars:100 }}</p>
+                <p class="post-timestamp">{{ post.timestamp }}</p>
+                <p class="post-stats">
+                    Likes: {{ post.get_likes }} | Comments: {{ post.get_all_comments.count }}
+                </p>
+            </div>
+            {% empty %}
+                <p>No posts matched your search query.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

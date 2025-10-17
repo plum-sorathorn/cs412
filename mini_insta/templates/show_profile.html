@@ -16,15 +16,15 @@
                 <h1 class="profile-username">{{ profile.username }}</h1>
                 <h2 class="profile-displayname">{{ profile.display_name }}</h2>
                 <div class="profile-stats">
-                    <span class="stat-item">
-                        <span class="stat-number">[# of Posts]</span> posts
-                    </span>
-                    <span class="stat-item">
-                        <span class="stat-number">[# of Followers]</span> followers
-                    </span>
-                    <span class="stat-item">
-                        <span class="stat-number">[# of Following]</span> following
-                    </span>
+                    <p class="stat-item">
+                        <a class="stat-number">{{ profile.get_num_posts }}</a> posts
+                    </p>
+                    <p class="stat-item">
+                        <a href="{% url 'show_followers' profile.pk %}"  class="stat-number">{{ profile.get_num_followers }}</a> followers
+                    </p>
+                    <p class="stat-item">
+                        <a href="{% url 'show_following' profile.pk %}"  class="stat-number">{{ profile.get_num_following }}</a> following
+                    </p>
                 </div>
                 <p class="profile-bio">{{ profile.bio_text }}</p>
                 <p class="profile-join-date">Joined: {{ profile.join_date }}</p>

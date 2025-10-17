@@ -24,15 +24,28 @@
 
     <footer>
         <nav>
-            <a href="{% url 'profile_list' %}">Home</a>
+            {% if profile %}
+                <a href="{% url 'post_feed' profile.pk %}">Home (Feed)</a>
+            {% endif %}
+            {% if profile %}
+                <a href="{% url 'search' profile.pk %}">Search</a>
+            {% endif %}
+            {% if profile %}
+                <a href="{% url 'profile_list' %}">Home (All Profiles)</a>
+            {% endif %}
+
             {% if profile %}
                 <a href="{% url 'create_post' profile.pk %}">Create Post</a>
             {% endif %}
             {% if profile %}
                 <a href="{% url 'update_profile' profile.pk %}">Update Profile</a>
             {% endif %}
+
             {% if post %}
                 <a href="{% url 'update_post' post.pk %}">Update Post</a>
+            {% endif %}
+            {% if post %}
+                <a href="{% url 'delete_post' post.pk %}">Delete Post</a>
             {% endif %}
         </nav>
     </footer>
