@@ -56,6 +56,13 @@ class Profile(models.Model):
         following_list = Profile.objects.filter(pk__in=following.values('profile')).exclude(username=self.username)
         return following_list.count()
     
+    def get_post_feed(self):
+        ''' return a post feed, shows posts from profiles followed by this one '''
+        following_profiles = self.get_following()
+        following_pks = following_profiles
+        feed_posts = Post.objects.filter(profile__in=following_pks).order_by('-timestamp')
+        return feed_posts
+    
 
 class Post(models.Model):
     ''' model connected to each profile, containing each profile's posts '''

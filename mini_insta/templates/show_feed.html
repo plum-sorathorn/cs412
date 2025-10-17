@@ -1,0 +1,58 @@
+<!-- File: show_feed.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 10/17/2025 -->
+<!-- Description: html page to show feed of posts -->
+
+
+{% extends "base_mini_insta.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="feed-container">
+    <h2>Post Feed for {{ profile.username }}</h2>
+    <div class="feed-posts-list">
+        {% for post in posts %}
+            <div class="feed-post-card">
+                <div class="post-header">
+                    <a href="{% url 'profile' post.profile.pk %}" class="post-profile-link">
+                        <div class="post-profile-image-container">
+                            <img src="{{ post.profile.profile_image_url }}" alt="{{ post.profile.display_name }}'s profile image" class="post-profile-image">
+                        </div>
+                        <span class="post-username">{{ post.profile.username }}</span>
+                        {% if post.profile.display_name %}
+                            <span class="post-display-name">({{ post.profile.display_name }})</span>
+                        {% endif %}
+                    </a>
+                </div>
+
+                <a href="{% url 'post' post.pk %}">
+                    <div class="feed-post-photo-container">
+                        {% with photos=post.get_all_photos %}
+                            {% if photos %}
+                                <img src="{{ photos.0.get_image_url }}" alt="Post image" class="feed-post-photo">
+                            {% else %}
+                                <div class="no-photo-placeholder">No Image Available</div>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </a>
+
+                <div class="feed-post-details">
+                    <p class="feed-post-caption">
+                        <a href="{% url 'profile' post.profile.pk %}" class="post-username-in-caption">@{{ post.profile.username }}</a>
+                         {{ post.caption }}
+                    </p>
+                    <p class="feed-post-stats">
+                        <span class="stat-item">{{ post.get_likes }} Likes</span> | 
+                        <span class="stat-item">{{ post.get_all_comments.count }} Comments</span>
+                    </p>
+                    <p class="feed-post-timestamp">{{ post.timestamp }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p class="empty-feed-message">You are not following anyone yet, or they haven't posted.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

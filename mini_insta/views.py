@@ -3,6 +3,7 @@
 # Description: logic/backend for mini_insta
 
 from django.utils import timezone
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from .models import Photo, Profile, Post
@@ -153,4 +154,74 @@ class ShowFollowingDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         profile = self.get_object()
         context['profiles'] = profile
+        return context
+    
+class PostFeedListView(ListView):
+    ''' View class to show the post feed for a single profile. '''
+
+    model = Post
+    template_name = "show_feed.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        '''Return the post feed for the profile matching the pk in the URL.'''
+        profile = Profile.objects.get(pk=self.kwargs['pk'])
+        return profile.get_post_feed()
+
+    def get_context_data(self, **kwargs):
+        '''Add profile info to the template context.'''
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.get(pk=self.kwargs['pk'])
+        context['profile'] = profile
+        return context
+
+class SearchView(ListView):
+    ''' View class to search Profiles and Posts based on a text input. '''
+    
+    template_name = "search_results.html" 
+    
+    def dispatch(self, request, *args, **kwargs):
+        ''' Checks for a 'query'. If absent, shows the search form. 
+        If present, proceeds with the ListView process for results. '''
+        if 'query' not in self.request.GET:
+            pk = self.kwargs['pk']
+            profile = Profile.objects.get(pk=pk)
+            return render(request, 'search.html', {'profile': profile})
+        
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        ''' Returns the QuerySet of matching Posts. 
+        This is what the ListView mechanism expects. '''
+        query = self.request.GET.get('query', '')
+        posts = Post.objects.filter(caption__icontains=query).order_by('-timestamp')
+        return posts
+    
+    def get_context_data(self, **kwargs):
+        ''' processing logic to filter out searches '''
+        context = super().get_context_data(**kwargs)
+        
+        pk = self.kwargs['pk']
+        profile = Profile.objects.get(pk=pk)
+        query = self.request.GET.get('query', '')
+        
+        context['profile'] = profile
+        context['query'] = query
+        
+        context['posts'] = self.object_list
+        
+        profiles_results = []
+        lower_query = query.lower()
+
+        # for loop to compare search text with username, display_name, and         
+        for p in Profile.objects.all():
+
+            username_match = lower_query in p.username.lower() if p.username else False
+            display_name_match = lower_query in p.display_name.lower() if p.display_name else False
+            
+            if username_match or display_name_match:
+                profiles_results.append(p)
+
+        context['profiles_results'] = profiles_results
+        
         return context
