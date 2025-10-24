@@ -16,35 +16,42 @@
             <h1>Mini Insta</h1>
         </header>
         <main>
+
             {% block content %}
             {% endblock %}
         </main>
+        {% if request.user.is_authenticated %}
+        Logged in as: {{ request.user }}
+        {% endif %}
 
     </body>
 
     <footer>
         <nav>
-            {% if profile %}
-                <a href="{% url 'post_feed' profile.pk %}">Home (Feed)</a>
+            {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'create_profile' %}">Register</a>
             {% endif %}
-            {% if profile %}
-                <a href="{% url 'search' profile.pk %}">Search</a>
-            {% endif %}
-            {% if profile %}
-                <a href="{% url 'profile_list' %}">Home (All Profiles)</a>
-            {% endif %}
-
-            {% if profile %}
-                <a href="{% url 'create_post' profile.pk %}">Create Post</a>
-            {% endif %}
-            {% if profile %}
-                <a href="{% url 'update_profile' profile.pk %}">Update Profile</a>
+            {% if request.user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Log out</button>
+                </form>
             {% endif %}
 
-            {% if post %}
+            {% if post or profile %}
+                <a href="{% url 'profile_list' %}">Home</a>
+            {% endif %}
+
+            {% if profile and request.user.is_authenticated and profile.user == request.user %}
+                <a href="{% url 'post_feed' %}">Feed</a>
+                <a href="{% url 'search' %}">Search</a>
+                <a href="{% url 'create_post' %}">Create Post</a>
+                <a href="{% url 'update_profile' %}">Update Profile</a>
+            {% endif %}
+
+            {% if post and request.user.is_authenticated %}
                 <a href="{% url 'update_post' post.pk %}">Update Post</a>
-            {% endif %}
-            {% if post %}
                 <a href="{% url 'delete_post' post.pk %}">Delete Post</a>
             {% endif %}
         </nav>

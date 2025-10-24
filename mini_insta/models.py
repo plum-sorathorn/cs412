@@ -4,6 +4,7 @@
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Profile(models.Model):
     ''' structure of each user's data attributes '''
@@ -13,6 +14,7 @@ class Profile(models.Model):
     profile_image_url = models.TextField(blank=True)
     bio_text = models.TextField(blank=True)
     join_date = models.TextField(blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         ''' return string representation of profile instance '''
@@ -62,6 +64,16 @@ class Profile(models.Model):
         following_pks = following_profiles
         feed_posts = Post.objects.filter(profile__in=following_pks).order_by('-timestamp')
         return feed_posts
+   
+    def is_followed_by_user(self, user):
+        """Checks if the given Django User's profile is following THIS profile."""
+        if not user.is_authenticated:
+            return False
+        try:
+            follower_profile = Profile.objects.get(user=user)
+        except Profile.DoesNotExist:
+            return False
+        return Follow.objects.filter(profile=self, follower_profile=follower_profile).exists()
     
 
 class Post(models.Model):
@@ -89,6 +101,16 @@ class Post(models.Model):
         ''' return number of likes associated with a post '''
         likes = Like.objects.filter(post=self)
         return likes.count()
+    
+    def is_liked_by_user(self, user):
+        """Checks if the given Django User's profile has liked THIS post."""
+        if not user.is_authenticated:
+            return False
+        try:
+            liking_profile = Profile.objects.get(user=user)
+        except Profile.DoesNotExist:
+            return False
+        return Like.objects.filter(post=self, profile=liking_profile).exists()
 
 class Photo(models.Model):
     ''' model connected to each post, containing each post's photo(s) '''

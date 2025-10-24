@@ -8,7 +8,7 @@
 {% block content %}
 <div class="form-container">
     <h2>Search Mini Insta</h2>
-    <form method="GET" action="{% url 'search' profile.pk %}" class="search-form">
+    <form method="GET" action="{% url 'search' %}" class="search-form">
         <div class="form-group">
             <label for="id_query" class="form-label">Search for Profiles or Posts:</label>
             <input type="text" id="id_query" name="query" class="form-input" placeholder="Enter username, display name, or post caption..." required>

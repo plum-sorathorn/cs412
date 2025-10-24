@@ -46,6 +46,16 @@
                         <span class="stat-item">{{ post.get_likes }} Likes</span> | 
                         <span class="stat-item">{{ post.get_all_comments.count }} Comments</span>
                     </p>
+                    
+                    <div class="feed-post-actions">
+                        {% if request.user.is_authenticated and post.profile.user != request.user %}
+                            {% if post.is_liked %}
+                                <a href="{% url 'delete_like' post.pk %}" class="action-link unlike-link">Unlike</a>
+                            {% else %}
+                                <a href="{% url 'like_post' post.pk %}" class="action-link like-link">Like</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                     <p class="feed-post-timestamp">{{ post.timestamp }}</p>
                 </div>
             </div>

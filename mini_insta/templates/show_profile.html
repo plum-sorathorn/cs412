@@ -26,6 +26,13 @@
                         <a href="{% url 'show_following' profile.pk %}"  class="stat-number">{{ profile.get_num_following }}</a> following
                     </p>
                 </div>
+                {% if request.user.is_authenticated and profile.user != request.user %}
+                    {% if is_following %}
+                        <a href="{% url 'delete_follow' profile.pk %}" class="button unfollow-button">Unfollow</a>
+                    {% else %}
+                        <a href="{% url 'follow_profile' profile.pk %}" class="button follow-button">Follow</a>
+                    {% endif %}
+                {% endif %}
                 <p class="profile-bio">{{ profile.bio_text }}</p>
                 <p class="profile-join-date">Joined: {{ profile.join_date }}</p>
             </div>

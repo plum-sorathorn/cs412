@@ -1,0 +1,24 @@
+<!-- File: create_profile_form.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/25/2025 -->
+<!-- Description: html form to register a user and create their profile -->
+
+{% extends "base_mini_insta.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <p>Complete your registration!</p>
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <a href="{% url 'profile_list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

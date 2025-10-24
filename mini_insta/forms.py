@@ -25,3 +25,10 @@ class UpdatePostForm(forms.ModelForm):
         ''' link form to model in database '''
         model = Post
         fields = ['caption']
+
+class CreateProfileForm(forms.ModelForm):
+    ''' form to register a user '''
+    class Meta:
+        ''' link form to model in database '''
+        model = Profile
+        fields = ['username', 'display_name', 'bio_text', 'profile_image_url']
