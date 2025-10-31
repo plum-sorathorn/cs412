@@ -1,0 +1,53 @@
+<!-- File: show_voter.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 10/30/2025 -->
+<!-- Description: page to show individual voter data -->
+
+{% extends 'base_voter_analytics.html' %}
+{% load static %}
+
+{% block content %}
+    <body>
+        <div class="container">
+            <h1>Voter Information</h1>
+            <div class="voter-card">
+                <div class="voter-info">
+                    <div class="info-row">
+                        <span class="info-label">Name:</span>
+                        <span class="info-value">{{ voter.first_name }} {{ voter.last_name }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Address:</span>
+                        <span>
+                            <!-- add google maps link -->
+                            <a href="https://www.google.com/maps/search/?api=1&query={{ voter.street_number|urlencode }}
+                            +{{ voter.street_name|urlencode }}+{{ voter.apartment_name|urlencode }}+{{ voter.zip_code|urlencode }}">
+                                {{ voter.street_number }}
+                                {% if voter.street_name %} {{ voter.street_name }},{% endif %}
+                                {% if voter.apartment_number %} Apartment {{ voter.apartment_number }},{% endif %}
+                                {% if voter.zip_code %}{{ voter.zip_code }}{% endif %}
+                            </a>
+                        </span>
+                        
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Date of Birth:</span>
+                        <span class="info-value">{{ voter.date_of_birth }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Date of Registration:</span>
+                        <span class="info-value">{{ voter.date_of_registration }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Party Affiliation:</span>
+                        <span class="info-value">{{ voter.party_affiliation }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Voter Score:</span>    
+                        <span class="info-value">{{ voter.voter_score }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+<!-- File: graphs.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 10/31/2025 -->
+<!-- Description: page to show graphs of voter data -->
+
+{% extends 'base_voter_analytics.html' %}
+{% block content %}
+
+    <!-- Filter Form -->
+    <form method="get" class="filter-form">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="party">Party:</label>
+                <select name="party" class="form-control">
+                    <option value="" selected disabled hidden>Choose</option>
+                    <!-- loop through all parties in payload -->
+                    {% for party in parties %}
+                        <option value="{{ party }}" {% if request.GET.party == party %}selected{% endif %}>{{ party }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="min_dob_year">Min Year of Birth:</label>
+                <select name="min_dob_year" class="form-control">
+                    <option value="" selected disabled hidden>Choose</option>
+                    <!-- loop through all years in payload -->
+                    {% for year in date_of_births %}
+                        <option value="{{ year }}" {% if request.GET.min_dob_year == year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="max_dob_year">Max Year of Birth:</label>
+                <select name="max_dob_year" class="form-control">
+                    <option value="" selected disabled hidden>Choose</option>
+                    <!-- loop through all years in payload -->
+                    {% for year in date_of_births %}
+                        <option value="{{ year }}" {% if request.GET.max_dob_year == year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="voter_score">Voter Score:</label>
+                <select name="voter_score" class="form-control">
+                    <option value="" selected disabled hidden>Choose</option>
+                    <!-- loop through all voter scores in payload -->
+                    {% for score in voter_scores %}
+                        <option value="{{ score }}" {% if request.GET.voter_score == score %}selected{% endif %}>{{ score }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label>Previous Election Participation:</label><br>
+            <div class="checkbox-group">
+                    <!-- loop through all elections in payload -->
+                {% for election in elections %}
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="{{ election }}" id="{{ election }}" class="form-check-input" {% if request.GET.election == 'on' %}checked{% endif %}>
+                        <label class="form-check-label" for="{{ election }}">{{ election }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <a href="?" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+
+    <h1>Voter Data Graphs</h1>
+
+    <!-- Year of Birth Histogram -->
+    <div class="container">
+        <div class="row">
+            <h2>Distribution of Voters by Year of Birth</h2>
+            {{ graph_div_birth_year|safe }}
+        </div>
+    </div>
+
+    <!-- Party Affiliation Pie Chart -->
+    <div class="container">
+        <div class="row">
+            <h2>Voter Party Affiliation Distribution</h2>
+            {{ graph_div_party|safe }}
+        </div>
+    </div>
+
+    <!-- Election Participation Histogram -->
+    <div class="container">
+        <div class="row">
+            <h2>Voter Participation in Each Election</h2>
+            {{ graph_div_election_participation|safe }}
+        </div>
+    </div>
+{% endblock %}
