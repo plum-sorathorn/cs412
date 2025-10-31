@@ -1,5 +1,5 @@
 # File: models.py
-# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 9/23/2025
+# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 10/28/2025
 # Description: contains models for voter analytics webapp
 
 import csv
@@ -23,7 +23,7 @@ class Voter(models.Model):
     # dates
     date_of_birth = models.DateField(blank=True)
     date_of_registration = models.DateField(blank=True)
-    party_affliation = models.TextField(blank=True)
+    party_affiliation = models.TextField(blank=True)
 
     # idk
     precinct_number = models.TextField(blank=True)

@@ -1,0 +1,26 @@
+<!-- File: base_voter_analytics.html -->
+<!-- Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 10/29/2025 -->
+<!-- Description: base html for voter_analytics pages -->
+
+{% load static %}
+<html>
+    <head>
+        <title>Voter Analytics</title>
+        <link rel="stylesheet" href="{% static 'voter_analytics_styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Voter Analytics</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'voter_list' %}">Home</a></li>
+                </ul>
+ 
+            </nav>
+        </header>
+    
+    {% block content %}
+    {% endblock %}    
+  
+    </body>
+</html>
