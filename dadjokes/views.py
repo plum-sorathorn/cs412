@@ -31,6 +31,37 @@ class OneJokePictureAPIView(generics.ListAPIView):
         
         return Response([serializer.data])
 
+class OneJokeAPIView(generics.ListAPIView):
+    ''' show one Joke at random '''
+    
+    def get_queryset(self):
+        return Joke.objects.all()
+        
+    serializer_class = JokeSerializer 
+
+    def list(self, request, *args, **kwargs):
+        random_joke = Joke.objects.order_by('?').first()
+
+        serializer = self.get_serializer(random_joke)
+        
+        return Response([serializer.data])
+
+
+class OnePictureAPIView(generics.ListAPIView):
+    ''' show one Picture at random '''
+    
+    def get_queryset(self):
+        return Picture.objects.none()
+        
+    serializer_class = PictureSerializer 
+
+    def list(self, request, *args, **kwargs):
+        random_picture = Picture.objects.order_by('?').first()
+
+        serializer = self.get_serializer(random_picture)
+        
+        return Response([serializer.data])
+
 class ListCreateJokeAPIView(generics.ListCreateAPIView):
     '''
     show all Jokes and allow creation of Jokes

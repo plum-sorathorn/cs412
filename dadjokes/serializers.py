@@ -18,7 +18,7 @@ class JokeSerializer(serializers.ModelSerializer):
         fields = ['text','name','timestamp']
 
     def create(self, validated_data):
-        joke = Joke.object.create(**validated_data)
+        joke = Joke.objects.create(**validated_data)
         joke.save()
         return joke 
 
@@ -34,7 +34,7 @@ class PictureSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         ''' handle object creation '''
-        picture = Picture.object.create(**validated_data)
+        picture = Picture.objects.create(**validated_data)
         picture.save()
         return picture
 
