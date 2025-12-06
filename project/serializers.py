@@ -45,11 +45,18 @@ class UserRestaurantEntrySerializer(serializers.ModelSerializer):
         reviews = obj.review_set.all()
         return [{'rating': r.rating, 'comment': r.comment, 'date': r.date_posted} for r in reviews]
 
-# Serializer to process incoming data for both login and registration
-class AuthDataSerializer(serializers.Serializer):
-    ''' authenticate username and password '''
+# Serializer to process incoming data for login
+class LoginDataSerializer(serializers.Serializer): 
+    ''' authenticate username and password for login '''
     username = serializers.CharField(max_length=150)
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+
+# Serializer to process incoming data for registration
+class RegisterDataSerializer(serializers.Serializer):
+    ''' fields required for new user registration '''
+    username = serializers.CharField(max_length=150)
+    password1 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+    password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
 # Serializer to return the authentication token
 class TokenSerializer(serializers.Serializer):

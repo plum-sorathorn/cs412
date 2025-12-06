@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-vl))-xbc1!4gi5a9gs-u^4f03d)j)6ek(yzl+jd(4)#q)65gvl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs-webapps.bu.edu', '127.0.0.1']
+ALLOWED_HOSTS = ['cs-webapps.bu.edu', '127.0.0.1', '10.0.0.214' ] # CHANGE LAST IF LOCAL IP CHANGES
 
 
 # Application definition
@@ -47,9 +47,19 @@ INSTALLED_APPS = [
     'mini_insta',
     'voter_analytics',
     'rest_framework',
+    'rest_framework.authtoken',
     'dadjokes',
     'project',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

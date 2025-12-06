@@ -42,7 +42,7 @@ class RegisterView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
-        serializer = AuthDataSerializer(data=request.data)
+        serializer = RegisterDataSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         # Use Django form for clean validation and user creation
@@ -63,16 +63,16 @@ class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
     
     def post(self, request):
-        serializer = AuthDataSerializer(data=request.data)
+        serializer = LoginDataSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
         # Use Django form to authenticate credentials
         form = UserLoginForm(data=serializer.validated_data)
 
         if form.is_valid():
-            user = form.user # User is attached to the form during clean()
+            user = form.user
             
-            # Use Django's login function to set a session (optional for pure API)
+            # Use Django's login function to set a session 
             login(request, user)
             
             # Retrieve the token
