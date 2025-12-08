@@ -7,17 +7,21 @@ from django.contrib.auth import views as auth_views
 from .views import *
 
 urlpatterns = [
-    # GET: /api/cuisines/ -> Lists all cuisine types for filtering
     path('cuisines/', CuisineTypeListView.as_view(), name='cuisine-list'),
-    
-    # GET: /api/history/ -> Lists the current user's restaurant history
     path('history/', UserHistoryListView.as_view(), name='user-history-list'),
+    
+    # review
+    path('review/', ReviewCreateUpdateView.as_view(), name='add-review'),
 
     # AUTHENTICATION ENDPOINTS
-    # POST: /project_api/register/ -> Creates new user and returns token
     path('register/', RegisterView.as_view(), name='api-register'),
     
-    # POST: /project_api/login/ -> Authenticates user and returns token
     path('login/', LoginView.as_view(), name='api-login'),
+
+    # filtering and logging
+    path('filter-restaurants/', RestaurantFilterView.as_view(), name='filter-restaurants'),
+    path('suggest-cuisines/', CuisineSuggestionView.as_view(), name='suggest-cuisines'),
+    path('log-visit/', LogVisitView.as_view(), name='log-visit'),
+
 ]
 

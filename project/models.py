@@ -9,7 +9,8 @@ from django.contrib.auth.models import User
 
 class CuisineType(models.Model):
     ''' Used to define and categorize food types (for filtering) '''
-    name = models.TextField(blank=True)
+    name = models.CharField(max_length=100)
+    api_identifier = models.CharField(max_length=100, unique=True, null=True)
     description = models.TextField(blank=True)
 
     def __str__(self):

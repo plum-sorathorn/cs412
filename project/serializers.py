@@ -62,3 +62,30 @@ class RegisterDataSerializer(serializers.Serializer):
 class TokenSerializer(serializers.Serializer):
     ''' return a auth token for logged-in use '''
     token = serializers.CharField(max_length=40)
+
+class RestaurantFilterSerializer(serializers.Serializer):
+    ''' Serializer to handle the list of restaurants sent from Frontend for filtering '''
+    # We receive a list of Place IDs (strings)
+    place_ids = serializers.ListField(child=serializers.CharField())
+    # Mode: 'new' or 'favorites'
+    filter_mode = serializers.ChoiceField(choices=['new', 'favorites'])
+
+class CuisineFilterSerializer(serializers.Serializer):
+    ''' Serializer to handle the list of Cuisine Types sent from Frontend for suggestions '''
+    # We receive a list of types available in the current map view (e.g., ['italian', 'thai'])
+    available_types = serializers.ListField(child=serializers.CharField())
+    # Mode: 'new_types' or 'tried_types'
+    filter_mode = serializers.ChoiceField(choices=['new_types', 'tried_types'])
+
+class LogVisitSerializer(serializers.Serializer):
+    ''' Serializer for logging a visit (Let's Eat button) '''
+    name = serializers.CharField()
+    address = serializers.CharField()
+    external_api_id = serializers.CharField()
+    cuisine_type = serializers.CharField()
+
+class ReviewSubmissionSerializer(serializers.Serializer):
+    ''' Validates data for creating/updating a review '''
+    entry_id = serializers.IntegerField()
+    rating = serializers.IntegerField(min_value=1, max_value=5)
+    comment = serializers.CharField(allow_blank=True)
