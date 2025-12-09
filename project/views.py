@@ -14,7 +14,6 @@ from rest_framework.authtoken.models import Token
 from .serializers import *
 from .models import CuisineType, UserRestaurantEntry
 from django.db.models import Prefetch
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 
 from .forms import UserRegistrationForm, UserLoginForm
@@ -27,7 +26,7 @@ class CuisineTypeListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly] 
 
 # Fetch the current User's History
-class UserHistoryListView(LoginRequiredMixin, generics.ListAPIView):
+class UserHistoryListView(generics.ListAPIView):
     """ Lists all restaurant entries for the authenticated user. """
     serializer_class = UserRestaurantEntrySerializer
     permission_classes = [permissions.IsAuthenticated]
