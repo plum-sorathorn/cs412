@@ -72,7 +72,7 @@ class RestaurantFilterSerializer(serializers.Serializer):
 
 class CuisineFilterSerializer(serializers.Serializer):
     ''' Serializer to handle the list of Cuisine Types sent from Frontend for suggestions '''
-    # We receive a list of types available in the current map view (e.g., ['italian', 'thai'])
+    # We receive a list of types available in the current map view
     available_types = serializers.ListField(child=serializers.CharField())
     # Mode: 'new_types' or 'tried_types'
     filter_mode = serializers.ChoiceField(choices=['new_types', 'tried_types'])
