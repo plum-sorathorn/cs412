@@ -9,6 +9,7 @@ from .views import *
 urlpatterns = [
     path('cuisines/', CuisineTypeListView.as_view(), name='cuisine-list'),
     path('history/', UserHistoryListView.as_view(), name='user-history-list'),
+    path('history/delete/<int:pk>/', DeleteHistoryEntryView.as_view(), name='delete-history'),
     
     # review
     path('review/', ReviewCreateUpdateView.as_view(), name='add-review'),

@@ -39,6 +39,21 @@ class UserHistoryListView(LoginRequiredMixin, generics.ListAPIView):
         # Automatically assign the current user when saving
         serializer.save(user=self.request.user)
 
+class DeleteHistoryEntryView(APIView):
+    """
+    Deletes a specific history entry.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def delete(self, request, pk):
+        # Fetch the entry, ensuring it belongs to the current user
+        entry = get_object_or_404(UserRestaurantEntry, pk=pk, user=request.user)
+        
+        # Delete the entry (cascading to reviews)
+        entry.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class RegisterView(APIView):
     """ Handles user registration and returns a token upon success. """
     permission_classes = [permissions.AllowAny]
