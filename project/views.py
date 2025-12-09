@@ -30,6 +30,7 @@ class UserHistoryListView(generics.ListAPIView):
     """ Lists all restaurant entries for the authenticated user. """
     serializer_class = UserRestaurantEntrySerializer
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = []
 
     def get_queryset(self):
         return UserRestaurantEntry.objects.filter(user=self.request.user).order_by('-date_picked')
