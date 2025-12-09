@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-vl))-xbc1!4gi5a9gs-u^4f03d)j)6ek(yzl+jd(4)#q)65gvl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cs-webapps.bu.edu', '127.0.0.1']
+ALLOWED_HOSTS = ['cs-webapps.bu.edu', '127.0.0.1', '10.239.115.255' ]
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'restaurant',
     'mini_insta',
     'voter_analytics',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'dadjokes',
@@ -55,7 +56,6 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -63,7 +63,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
-
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -72,6 +72,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'cs412.urls'
 
