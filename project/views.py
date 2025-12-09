@@ -56,7 +56,6 @@ class DeleteHistoryEntryView(APIView):
 class RegisterView(APIView):
     """ Handles user registration and returns a token upon success. """
     permission_classes = [permissions.AllowAny]
-    authentication_classes = []
 
     def post(self, request):
         serializer = RegisterDataSerializer(data=request.data)
@@ -78,7 +77,6 @@ class RegisterView(APIView):
 class LoginView(APIView):
     """ Handles user login and returns the existing token. """
     permission_classes = [permissions.AllowAny]
-    authentication_classes = []
     
     def post(self, request):
         serializer = LoginDataSerializer(data=request.data)
