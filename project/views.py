@@ -91,9 +91,6 @@ class LoginView(APIView):
         if form.is_valid():
             user = form.user
             
-            # Use Django's login function to set a session 
-            login(request, user)
-            
             # Retrieve the token
             token, created = Token.objects.get_or_create(user=user)
             
