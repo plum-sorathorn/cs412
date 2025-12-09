@@ -78,6 +78,7 @@ class RegisterView(APIView):
 class LoginView(APIView):
     """ Handles user login and returns the existing token. """
     permission_classes = [permissions.AllowAny]
+    authentication_classes = []
     
     def post(self, request):
         serializer = LoginDataSerializer(data=request.data)
