@@ -34,9 +34,9 @@ class UserRestaurantEntrySerializer(serializers.ModelSerializer):
             'address', 
             'date_picked',
             'external_api_id', 
-            'cuisine',         # The ID of the cuisine type
-            'cuisine_name',    # The name of the cuisine for display
-            'reviews',         # Nested reviews
+            'cuisine',
+            'cuisine_name',
+            'reviews',
         )
         read_only_fields = ('user',)
 
