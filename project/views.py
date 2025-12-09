@@ -30,7 +30,6 @@ class UserHistoryListView(generics.ListAPIView):
     """ Lists all restaurant entries for the authenticated user. """
     serializer_class = UserRestaurantEntrySerializer
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = []
 
     def get_queryset(self):
         return UserRestaurantEntry.objects.filter(user=self.request.user).order_by('-date_picked')
@@ -105,7 +104,6 @@ class RestaurantFilterView(APIView):
     Returns a filtered list of Place IDs based on User History.
     """
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = []
 
     def post(self, request):
         serializer = RestaurantFilterSerializer(data=request.data)
@@ -138,7 +136,6 @@ class CuisineSuggestionView(APIView):
     Returns a list of types to check/select in the filter modal.
     """
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = []
 
     def post(self, request):
         serializer = CuisineFilterSerializer(data=request.data)
@@ -171,7 +168,6 @@ class LogVisitView(APIView):
     Logs a restaurant visit. Creates the CuisineType if it doesn't exist.
     """
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = []
 
     def post(self, request):
         serializer = LogVisitSerializer(data=request.data)
@@ -205,7 +201,6 @@ class ReviewCreateUpdateView(APIView):
     Allows a user to add or update a review for a specific history entry.
     """
     permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = []
 
     def post(self, request):
         serializer = ReviewSubmissionSerializer(data=request.data)
