@@ -1,2 +1,4 @@
-username: smithyj
-password: john12345
+username: test
+password: test12345
+
+note: you could also register a new user if you'd like

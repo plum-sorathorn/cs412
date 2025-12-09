@@ -1,3 +1,8 @@
+# File: authentication.py
+# Author: Sorathorn Thongpitukthavorn (plum@bu.edu), 11/24/2025
+# Description: custom authentication header for API endpoint (final project) 
+#              since school's servers were dropping auth headers
+
 from rest_framework.authentication import TokenAuthentication
 
 class CustomHeaderTokenAuthentication(TokenAuthentication):
